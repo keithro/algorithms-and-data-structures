@@ -15,7 +15,7 @@
 //   return parseInt(Math.sign(n) > -1 ? reversed : `-${reversed}`)
 // }
 
-// ===== Solution 2: cleaner (could use 1 line but looks messy and long) =====
+// ===== Solution 2: using Math.sign() (could use 1 line but looks messy and long) =====
 function reverseInt(n) {
   let reversed = n.toString().split('').reverse().join('');
   return parseInt(reversed) * Math.sign(n);

@@ -1,1 +1,2 @@
 # AlgoCasts
+by Stephen Grider
