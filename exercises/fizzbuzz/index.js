@@ -12,6 +12,49 @@
 //   4
 //   buzz
 
-function fizzBuzz(n) {}
+// ====== My Solution 1 ======
+// function fizzBuzz(n) {
+//   for(let i = 1; i <= n; i++) {
+//     if(i % 3 === 0 || i % 5 === 0) {
+//       let printStr = '';
+
+//       if (i % 3 === 0) {
+//         printStr += "fizz";
+//       }
+//       if (i % 5 === 0) {
+//         printStr += "buzz"
+//       }
+
+//       console.log(printStr);
+//     } else {
+//       console.log(i);
+//     }
+//   }
+// }
+
+// ====== Solution 2: his solution ======
+// function fizzBuzz(n) {
+//   for (let i = 1; i <= n; i++) {
+//     if (i % 15 === 0) {
+//       console.log('fizzbuzz');
+//     } else if (i % 3 === 0) {
+//       console.log('fizz');
+//     } else if (i % 5 === 0) {
+//       console.log('buzz');
+//     } else {
+//       console.log(i);
+//     }
+//   }
+// }
+
+// ====== Solution 3: refactored from Q&A ======
+function fizzBuzz(n) {
+  for (let i = 1; i <= n; i++) {
+    let str = '';
+    if (i % 3 ===0) str += 'fizz';
+    if (i % 5 ===0) str += 'buzz';
+    console.log(str || i);
+  }
+}
 
 module.exports = fizzBuzz;

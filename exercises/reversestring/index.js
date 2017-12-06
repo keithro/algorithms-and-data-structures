@@ -22,16 +22,16 @@
 //   return newStr.join('');
 // }
 
-// ===== Solution 2.b for loop with new for syntax =====
-function reverse(str) {
-  let reversed = '';
+// ===== Solution 2.b for loop with new syntax =====
+// function reverse(str) {
+//   let reversed = '';
 
-  for (let character of str) {
-    reversed = character + reversed;
-    // debugger;                        // see instructions below
-  }
-  return reversed;
-}
+//   for (let character of str) {
+//     reversed = character + reversed;
+//     // debugger;                        // see instructions below
+//   }
+//   return reversed;
+// }
 
 // ===== Solution 3 with .reduce() =====
 // function reverse(str) {
@@ -49,5 +49,10 @@ copy/paste function to see if it works correctly.
 ctrl+C to exit repl, then c to continue (if there are more debugger statements), or ctrl+C again to exit debugger
  */
 // reverse('abc123');
+
+// MORE PRACTICE
+function reverse(str) {
+
+}
 
 module.exports = reverse;

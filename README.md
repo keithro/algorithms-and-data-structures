@@ -1,2 +1,2 @@
-# AlgoCasts
+# Algorithms & Data Structures
 by Stephen Grider

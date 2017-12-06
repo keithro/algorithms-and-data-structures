@@ -5,6 +5,7 @@
 // maxChar("abcccccccd") === "c"
 // maxChar("apple 1231111") === "1"
 
+// ====== My unseccessful attempt ======
 // function maxChar(str) {
 //   let charMap = str.split('').reduce((charMap, char) => {
 //     if (let char of charMap){
@@ -14,7 +15,7 @@
 //     }
 //     return charMap;
 //   }, {})
-//   return charMap.sort((a, b) => {
+//   return charMap.sort((a, b) => { // this is an array method, not object
 //     return a.letter - b.letter;
 //   })
 // }
@@ -38,5 +39,3 @@ function maxChar(str) {
 }
 
 module.exports = maxChar;
-
-// return data[letter] ? data[letter]++ : data[letter] = 1;
