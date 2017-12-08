@@ -50,9 +50,4 @@ ctrl+C to exit repl, then c to continue (if there are more debugger statements),
  */
 // reverse('abc123');
 
-// MORE PRACTICE
-function reverse(str) {
-
-}
-
 module.exports = reverse;

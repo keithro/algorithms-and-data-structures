@@ -73,3 +73,47 @@ function fizzbuzz(n) { // n is not an iterable object
   }
 }
 
+// Array Chunking
+function chunk(array, size){
+  const chunked = [];
+  
+  for(let i = 0; i < array.length; i += size) {
+    chunked.push(array.slice(i, i + size));
+  }
+
+  return chunked;
+}
+
+function chunk(array, size) {
+  const chunked = [];
+  
+  for(let element of array) {
+    const lastSub = chunked[chunked.length - 1]; // .length not .length()
+
+    if(!lastSub || lastSub.length === size) {
+      chunked.push([element]); // wrap in paranthesis
+    } else {
+      lastSub.push(element);
+    }
+  }
+  return chunked;
+}
+
+// Max Char
+function maxChar(str) {
+  const charMap = {};
+  let max = 0;
+  let maxChar = '';
+
+  for(let char of str) {
+    charMap[char] = charMap[char] + 1 || 1; // set equal to new value, not return
+  }
+
+  for(let char in charMap) {
+    if(charMap[char] > max) {
+      maxChar = char;
+      max = charMap[char];
+    }
+  }
+  return maxChar;
+}
