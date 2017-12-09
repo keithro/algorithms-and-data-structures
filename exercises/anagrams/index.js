@@ -64,9 +64,6 @@
 
 // ====== Solution 2 ======
 function anagrams(stringA, stringB) {
-  // const arrA = cleanArr(stringA);
-  // const arrB = cleanArr(stringB);
-
   return cleanStr(stringA) === cleanStr(stringB);
 }
 

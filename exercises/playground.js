@@ -6,7 +6,7 @@ function reverseStr(str) {
 }
 
 function reverseStr(str) {
-  revStr = '';
+  revStr = '';            // forgot to use "let"
   for(let char of str) {
     revStr = char + revStr;
   }
@@ -117,3 +117,85 @@ function maxChar(str) {
   }
   return maxChar;
 }
+
+// REVERSE STRING
+function reverseStr(str) {
+  return str.split('').reverse().join('');
+}
+
+function reverseStr(str) {
+  let revStr = ''; // used const
+
+  for(let char of str) {
+    revStr = char + revStr;
+  }
+  return revStr; // forgot to return string
+}
+
+function reverseStr(str) {
+  return str.split('').reduce((str, char) => char + str, '')
+}
+
+// FIZZBUZZ
+function fizzbuzz(n) { // mispelled buzz
+  for(let i = 1; i <= n; i++) { // for to use <=
+    let str = '';
+    if(i % 3 === 0) str += 'fizz';
+    if(i % 5 === 0) str += 'buzz';
+    console.log(str || i); // used return rather than log, then tried to log n
+  }
+}
+
+function fizzbuzz(n) {
+  for(let i = 1; i <= n; i++) {
+    if(i % 3 === 0 && i % 5 === 0) {
+      console.log('fizzbuzz');
+    } else if(i % 3 === 0) {
+      console.log('fizz');
+    } else if(i % 5 === 0) {
+      console.log('buzz');
+    } else {
+      console.log(i); // still logging n WTF?!?
+    }
+  }
+}
+
+// ANAGRAMS
+function anagrams(stringA, stringB) {
+  return cleanStr(stringA) === cleanStr(stringB);
+}
+
+function cleanStr(str) {    // still need help with regex
+  return str.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
+}
+
+// long version
+function anagrams(stringA, stringB) {
+  const strA = stringA.replace(/[^\w]/g, '').toLowerCase();
+  const strB = stringB.replace(/[^\w]/g, '').toLowerCase();
+
+  if(strA.length !== strB.length) {
+    return false;
+  }
+
+  const mapA = mapChars(strA);
+  const mapB = mapChars(strB);
+
+  for(let char in mapA) {
+    if(mapA[char] !== mapB[char]) {
+      return false;
+    }
+    return true;
+  }
+}
+
+function mapChars(str) {
+  let charMap = {};
+
+  for(let char of str) {
+    charMap[char] = charMap[char] + 1 || 1;
+  }
+  return charMap;
+}
+
+
