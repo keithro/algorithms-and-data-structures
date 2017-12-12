@@ -33,8 +33,8 @@ function palindrome(str) {
     if (str.charAt(i) !== str.charAt(str.length - 1 - i)) {
       return false;
     };
-    return true;
   }
+  return true; // why does this work inside and out of the for loop?
 }
 
 module.exports = palindrome;

@@ -24,7 +24,7 @@ function palindrome(str) {
 }
 
 function palindrome(str) {
-  return str.split('').every((char, i) => { // use "each" rather than "every()"
+  return str.split('').every((char, i) => { // used "each" rather than "every()"
     return char === str[str.length - 1 - i];
   }) 
 }
@@ -138,7 +138,7 @@ function reverseStr(str) {
 
 // FIZZBUZZ
 function fizzbuzz(n) { // mispelled buzz
-  for(let i = 1; i <= n; i++) { // for to use <=
+  for(let i = 1; i <= n; i++) { // forgot to use <=
     let str = '';
     if(i % 3 === 0) str += 'fizz';
     if(i % 5 === 0) str += 'buzz';
@@ -198,4 +198,143 @@ function mapChars(str) {
   return charMap;
 }
 
+// PALINDROME
+function palindrome(str) {
+  return str === str.split('').reverse().join(''); // Used = rather than ===
+}
 
+function palindrome(str) {
+  for(let i = 0; i < str.length / 2; i++) {
+    if(str[i] !== str[str.length - 1 - i]) {
+      return false;
+    }
+  }
+  return true
+}
+
+function palindrome(str) {          // completely forgot how to do this one
+  return str.split('').every((char, i) => {
+    return char === str[str.length - i - 1]
+  })
+}
+
+// ARRAY CHUNKING
+function chunk(array, size) {
+  const chunked = [];
+  
+  for(let i = 0; i < array.length; i += size) { //forgot the = in +=
+    chunked.push(array.slice(i, i + size));
+  }
+  return chunked;
+}
+
+function chunk(array, size) {
+  let chunked = [];
+  
+  for(let item of array) {
+    const lastItem = chunked[chunked.length - 1];
+
+    if(!lastItem || lastItem.length === size) {
+      chunked.push([item]);
+    } else {
+      lastItem.push(item);
+    }
+  }
+  return chunked;
+}
+
+// SENTENCE CAPITALIZATION
+function capitalize(str) {
+  return str
+    .split(' ')
+    .map(item => item[0].toUpperCase() + item.slice(1)) // forgot to add rest of word
+    .join(' ')
+}
+
+function capitalize(str) {
+  const words = [];
+
+  for(let word of str.split(' ')) {     // forgot to split string
+    words.push(word[0].toUpperCase() + word.slice(1));
+  }
+
+  return words.join(' ');
+}
+
+// REVERSE INT
+function reverseInt(n) {
+  // forgot to turn into string, forgot () in reverse, n in Math.sign(n)
+  let reversed = n.toString().split('').reverse().join('');
+  // didnt't parse int
+  return parseInt(reversed) * Math.sign(n);
+}
+
+// ANAGRAMS
+function anagrams(stringA, stringB) {
+  return cleanStr(stringA) === cleanStr(stringB);
+}
+
+function cleanStr(str) { // forgot to sort, to join, and to use '' in join('')
+  return str.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
+}
+// ----------
+function anagrams(stringA, stringB) {
+  const mapA = buildMap(stringA);
+  const mapB = buildMap(stringB);
+
+  if(Object.keys(mapA).length !== Object.keys(mapB).length) {
+    return false;
+  }
+
+  for(let letter in mapA) {
+    if(mapA[letter] !== mapB[letter]) {
+      return false;
+    }
+    return true;
+  }
+}
+
+function buildMap(str) {
+  let charMap = {};
+
+  for(let char of str.replace(/[^\w]/g, '').toLowerCase()) {
+    charMap[char] = charMap[char] + 1 || 1;
+  }
+  return charMap;
+}
+
+// STEPS
+function steps(n) {
+  for(let row = 0; row < n; row++) {
+    let str = '';
+    for (let col = 0; col < n; col++) {
+      if(col <= row) {
+        str += '#';
+      } else {
+        str += ' ';
+      }
+    }
+    console.log(str); // forgot to console.log
+  }
+}
+
+function steps(n, row = 0, step = '') {
+  if(row === n) {
+    return;
+  }
+
+  if(step.length === n) {
+    console.log(step);
+    return steps(n, row + 1)
+  }
+
+  // if(step.length <= row) {
+  //   step += '#';
+  // } else {
+  //   step += ' ';
+  // }
+  // return steps(n, row, step);
+
+  const add = step.length <= row ? '#' : ' ';
+  return steps(n, row, step + add)
+}

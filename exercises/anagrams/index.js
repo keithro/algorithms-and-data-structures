@@ -8,7 +8,7 @@
 //   anagrams('RAIL! SAFETY!', 'fairy tales') --> True
 //   anagrams('Hi there', 'Bye there') --> False
 
-// ====== My Solution ======
+// // ====== My Solution ======
 // function anagrams(stringA, stringB) {
 //    // oops didn't need to split into array
 //   let strA = stringA.replace(/[^\w]/g, "").toLowerCase().split('');
@@ -36,7 +36,7 @@
 //   }
 // }
 
-// ====== Solution 1: a better ver of mine ======
+// // ====== Solution 1: a better ver of mine ======
 // function anagrams(stringA, stringB) {
 //   const charMapA = buildMap(stringA);
 //   const charMapB = buildMap(stringB);

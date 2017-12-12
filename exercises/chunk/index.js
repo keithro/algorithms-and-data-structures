@@ -38,7 +38,7 @@
 //   return chunked
 // }
 
-// ====== Solution 2.b: his implimentatino of the slice method w/ while loop ======
+// ====== Solution 2.b: his implimentation of the slice method w/ while loop ======
 function chunk(array, size) {
   const chunked = [];
   let index = 0;
