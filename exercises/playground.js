@@ -338,3 +338,81 @@ function steps(n, row = 0, step = '') {
   const add = step.length <= row ? '#' : ' ';
   return steps(n, row, step + add)
 }
+
+// MAX CHAR
+function maxChar(str) {
+  let charMap = {};
+  let max = 0;
+  let maxChar = '';
+
+  for(let char of str) {
+    charMap[char] = charMap[char] + 1 || 1;
+  }
+
+  for(let char in charMap) {
+    if(charMap[char] > max) {
+      max = charMap[char];
+      maxChar = char;
+    }
+  }
+  return maxChar;
+}
+
+// CAPITALIZE SENTENCE
+function capitalize(str) {
+  return str
+    .split(' ')
+    .map(word => word[0].toUpperCase() + word.slice(1)) // did not need index, forgot parenthesis on .toUpperCase()
+    .join(' ');
+}
+
+function capitalize(str) {
+  let words = [];
+
+  for(let word of str.split(' ')) { // forgot to split str
+    words.push(word[0].toUpperCase() + word.slice(1));
+  }
+
+  return words.join(' ');
+}
+
+// PYRAMID
+function pyramid(n) {
+  const midpoint = Math.floor((n * 2 - 1) / 2); // put paranthasis around whole expression
+
+  for (let row = 0; row < n; row++) {
+    let level = '';
+    for (let col = 0; col < n * 2 - 1; col++) { // forgot "col++"
+      if (midpoint - row <= col && midpoint + row >= col) { // got this all wrong
+        level += '#';
+      } else {
+        level += ' ';
+      }
+    }
+
+    console.log(level);
+  }
+}
+
+// PYRAMID RECURSIVE
+function pyramid(n, row = 0, level = '') {
+  if (row === n) {
+    return;
+  }
+
+  if (level.length === n * 2 - 1) { // needed level.length not "col"
+    console.log(level);
+    return pyramid(n, row + 1);
+  }
+
+  const midpoint = Math.floor((n * 2 - 1) / 2);
+  let add;
+  if (level.length >= midpoint - row && level.length <= midpoint + row) { // "<=" not "<"
+    add = '#';
+  } else {
+    add = ' ';
+  }
+  return pyramid(n, row, level + add);
+}
+
+
