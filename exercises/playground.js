@@ -106,7 +106,7 @@ function maxChar(str) {
   let maxChar = '';
 
   for(let char of str) {
-    charMap[char] = charMap[char] + 1 || 1; // set equal to new value, not return
+    charMap[char] = charMap[char] + 1 || 1; // need to set equal to new value, not return
   }
 
   for(let char in charMap) {
@@ -413,6 +413,103 @@ function pyramid(n, row = 0, level = '') {
     add = ' ';
   }
   return pyramid(n, row, level + add);
+}
+
+// MAX CHAR
+function maxChar(str) {
+  let charMap = {};
+  let max = 0;
+  let maxChar = '';
+
+  for(let char of str) {
+    charMap[char] = charMap[char] + 1 || 1;
+  }
+
+  for(let char in charMap) {
+    if(charMap[char] > max) { // used maxChar instead of charMap
+      max = charMap[char];
+      maxChar = char;
+    }
+  }
+
+  return maxChar
+}
+
+// FIZZBUZZ
+function fizzbuzz(n) {
+  for(let i = 1; i <= n; i++) {
+    let str = '';
+    if(i % 3 === 0) str += 'fizz';
+    if(i % 5 === 0) str += 'buzz';
+    console.log(str || i); // used n instaid of i again!!!
+  }
+}
+function fizzbuzz(n) {
+  for(let i = 1; i <= n; i++) {
+    if(i % 3 === 0 && i % 5 === 0) {
+      console.log('fizzbuzz');
+    } else if (i % 3 === 0) {
+      console.log('fizz');
+    } else if ( i % 5 === 0) {
+      console.log('buzz');
+    } else {
+      console.log(i);
+    }
+  }
+}
+
+// PRINT STEPS
+function steps(n) {
+  for(let row = 0; row < n; row++) {
+    let str = '';
+    for(let col = 0; col < n; col++) {
+      if(col <= row) {
+        str += '#';
+      } else {
+        str += ' ';
+      }
+    }
+    console.log(str);
+  }
+}
+
+// PRINT STEPS RECURSIVE
+function steps(n, row = 0, step = '') {
+  if (row === n) {
+    return;
+  }
+
+  if (step.length === n) {
+    console.log(step);
+    return steps(n, row + 1);
+  }
+
+  // if (step.length <= row) { // used steps not step
+  //   step += '#';
+  // } else {
+  //   step += ' ';
+  // }
+  // steps(n, row, step);
+
+  const add = step.length <= row ? '#' : ' ';
+  steps(n, row, step + add);
+}
+
+// FIND VOWELS
+function vowels(str) {
+  const list = ['a', 'e', 'i', 'o', 'u'];
+  let count = 0;
+
+  for(let char of str.toLowerCase()) { // forgot to lower case and forgot the ()
+    if (list.includes(char)) { // messed this up, had str.includes(list)
+      count ++;
+    }
+  }
+  return count; // forgot to return count
+}
+function vowels(str) {
+  const matches = str.match(/[aeiou]/gi); // match not matches
+  return matches ? matches.length : 0;
 }
 
 
