@@ -512,4 +512,232 @@ function vowels(str) {
   return matches ? matches.length : 0;
 }
 
+// REVERSE STRING
+function reverse(str) {
+ return str.split('').reverse().join('');
+}
+
+function reverse(str) {
+  let reversed = '';
+
+  for(let char of str) { // Used "in" rather than "of"
+    reversed = char + reversed;
+  }
+
+  return reversed;
+}
+
+function reverse(str) {
+  return str
+    .split('')
+    .reduce((reversed, char) => reversed = char + reversed, '');
+}
+
+// ARRAY CHUNKING
+function chunk(arr, size) {
+  let chunked = [];
+  
+  for(let i = 0; i < arr.length; i + size) {
+    chunked.push(arr.splice(i, i + size));
+  }
+
+  return chunked;
+}
+// 2
+function chunk(arr, size) {
+  let chunked = [];
+
+  for(let item of arr) {
+    let last = chunked[chunked.length - 1];
+
+    if(!last || last.length === size) { // forgot to account for no inner array
+      chunked.push([item]);
+    } else {
+      last.push(item);
+    }
+  }
+  return chunked;
+}
+
+// PYRAMID
+function pyramid(n) {
+  const midpoint = Math.floor((n * 2 - 1) / 2);
+
+  for(let row = 0; row < n; row++) {
+    let level = '';
+
+    for(let col = 0; col < n * 2 -1; col++) {
+      if(col >= midpoint - row && col <= midpoint + row) { // still had my signs wrong
+        level += '#';
+      } else {
+        level += ' ';
+      }
+    }
+    console.log(level);
+  }
+}
+
+// PYRAMID RECURSIVE
+function pyramid(n, row = 0, level = '') {
+  if(row === n) {
+    return;
+  }
+
+  if(level.length === n * 2 - 1) {
+    console.log(level);
+    return pyramid(n, row + 1);
+  }
+
+  let midpoint = Math.floor((n * 2 - 1) / 2);
+  let add;
+  if(level.length >= midpoint - row && level.length <= midpoint + row) {
+    add = "#";
+  } else {
+    add = ' ';
+  }
+  return pyramid(n, row, level + add);
+}
+
+// PALINDROME
+function palindrome(str) {
+  return str === str.split('').reverse().join('');
+}
+
+function palindrom(str) {
+  for(let char = 0; char < str.length / 2; char++) {
+    if(char !== str[str.length - 1 - i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function palindrome(str) {
+  return str.split('').every((char, i) => {
+    return char === str[str.length - 1 - i];
+  })
+}
+
+// ANAGRAMS
+function anagrams(stringA, stringB) {
+  return cleanStr(stringA) === cleanStr(stringB);
+}
+
+function cleanStr(str) {
+  return str.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
+}
+
+// 2
+function anagrams(stringA, stringB) {
+  strA = stringA.replace(/[^\w]/g, '').toLowerCase();
+  strB = stringB.replace(/[^\w]/g, '').toLowerCase();
+
+  if(strA.length !== strB.length) return false; // forgot .length()
+
+  const charMapA = makeMap(strA); // didn't create const
+  const charMapB = makeMap(strB);
+
+  for(let key in charMapA) {
+    if(charMapA[key] !== charMapB[key]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function makeMap(str) {
+  let charMap = {}; // used empty array instead of object
+
+  for(let char of str) {
+    charMap[char] = charMap[char] + 1 || 1 // forgot to assisng to charMap[char] with the [char] key
+  }
+  return charMap;
+}
+// 3
+function anagrams(stringA, stringB) {
+  const mapA = buildMap(stringA);
+  const mapB = buildMap(stringB);
+
+  if(Object.keys(mapB).length !== Object.keys(mapA).length) { // forgot .length
+    return false;
+  }
+
+  for(let key in mapA) {
+    if(mapA[key] !== mapB[key]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function buildMap(str) {
+  const map = {};
+
+  for(let char of str.replace(/[^\w]/g, '').toLowerCase()) {
+    map[char] = map[char] + 1 || 1;
+  }
+  return map;
+}
+
+// FIND VOWELS
+function vowels(str) {
+  const list = ['a', 'e', 'i', 'o', 'u'];
+  let count = 0;
+
+  for(let char of str.toLowerCase()) { // forgot to lower case!!!
+    if(list.includes(char)) {
+      count++;
+    }
+  }
+  return count; // for got to return count!!!
+}
+
+// 2
+function vowels(str) {
+  const matches = str.match(/[aeiou]/gi); // forgot [] in regex
+  return matches ? matches.length : 0; // forgot to deal with an null
+}
+
+// MATRIX - HOLY SHIIIIIIIIIT!!!!
+function matrix(n) {
+  const results = [];
+  for(let i = 0; i < n; i++){
+    results.push([]);
+  }
+
+  let counter = 1;
+  let startColumn = 0;
+  let endColumn = n - 1;
+  let startRow = 0;
+  let endRow = n - 1;
+
+  while(startColumn <= endColumn && startRow <= endRow) {
+    for(let i = startColumn; i <= endColumn; i++) {
+      results[startRow][i] = counter;
+      counter++;
+    }
+    startRow++;
+
+    for(let i = startRow; i <= endRow; i++) {
+      results[i][endColumn] = counter;
+      counter++
+    }
+    endColumn--;
+
+    for(let i = endColumn; i >= startColumn; i--) {
+      results[endRow][i] = counter;
+      counter++;
+    }
+    endRow--;
+
+    for(let i = endRow; i >= startRow; i--) {
+      results[i][startColumn] = counter;
+      counter++;
+    }
+    startColumn++;
+  }
+
+  return results;
+}
+
 
