@@ -689,7 +689,7 @@ function vowels(str) {
       count++;
     }
   }
-  return count; // for got to return count!!!
+  return count; // forgot to return count!!!
 }
 
 // 2
@@ -740,4 +740,111 @@ function matrix(n) {
   return results;
 }
 
+// REVERSE INT
+function reverseInt(n) {
+  const result = n.toString().split('').reverse().join('');
 
+  return parseInt(result) * Math.sign(n); // accidentally multiplied by result again
+}
+
+// SENTENCE CAP
+function capitalize(str) {
+  return str.split(' ')
+    .map(word => word[0].toUpperCase() + word.slice(1)) // slice not splice
+    .join(' ');
+}
+
+function capitalize(str) {
+  const results = [];
+
+  for (let word of str.split(' ')) {
+    results.push(word[0].toUpperCase() + word.slice(1)); // didn't push results into an array
+  }
+
+  return results.join(' ');
+}
+
+// MATRIX
+function matrix(n) {
+  let results = [];
+  for(let i = 0; i < n; i++) {
+    results.push([]);
+  }
+
+  let counter = 1; // nneds to start at 1 not 0
+  let startColumn = 0;
+  let endColumn = n - 1;
+  let startRow = 0;
+  let endRow = n - 1;
+
+  while(startColumn <= endColumn && startRow <= endRow) {
+    // top row
+    for(let i = startColumn; i <= endColumn; i++) { // less than or EQUAL to
+      results[startRow][i] = counter;
+      counter++
+    }
+    startRow++;
+
+    // right column
+    for (let i = startRow; i <= endRow; i++) { // less than or EQUAL to
+      results[i][endColumn] = counter;
+      counter++;
+    }
+    endColumn--;
+
+    // bottom row
+    for(let i = endColumn; i >= startColumn; i--) {
+      results[endRow][i] = counter;
+      counter++;
+    }
+    endRow--;
+
+    for(let i = endRow; i >= startRow; i--) {
+      results[i][startColumn] = counter; // didnt set equal to counter
+      counter++;
+    }
+    startColumn++
+  }
+
+  return results;
+}
+
+// FIBONACCI
+function fib(n) {
+  let arr = [0, 1];
+
+  for(let i = 2; i <= n; i++) { // less than or EQUAL to
+    arr.push(arr[i - 1] + arr[i - 2]);
+  }
+
+  return arr[n];
+}
+// 2
+function fib(n) {
+  if(n < 2) return n;
+
+  return fib(n - 1) + fib(n - 2);
+}
+
+// with memoization
+function memoize(fn) {
+  const cache = {};
+  return function (...args) {
+    if (cache[args]) {
+      return cache[args];
+    }
+
+    const result = fn.apply(this, args);
+    cache[args] = result;
+
+    return result;
+  }
+}
+
+function fib(n) {
+  if(n < 2) return n;
+
+  return fib(n - 1) + fib(n - 2);
+}
+
+fib = memoize(fib);

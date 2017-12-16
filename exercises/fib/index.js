@@ -8,7 +8,7 @@
 // Example:
 //   fib(4) === 3
 
-// ====== My Solution ======
+// // ====== My Solution ======
 // function fib(n) {
 //   const result = [0];
 
@@ -29,7 +29,7 @@
 //     result.push(a + b);
 //   }
 
-//   return result[n]
+//   return result[n];
 // }
 
 // // ====== Slow Recursive Solution - Exponential runtime O(2^n) ======
