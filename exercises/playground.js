@@ -848,3 +848,112 @@ function fib(n) {
 }
 
 fib = memoize(fib);
+
+// MAXCHAR
+function maxChar(str) {
+  const charMap = {};
+  let max = 0;
+  let maxChar = '';
+
+  for(let char of str.toLowerCase()) {
+    charMap[char] = charMap[char] + 1 || 1;
+  }
+
+  for(let char in charMap) { // use IN for objects
+    if(charMap[char] > max) {
+      max = charMap[char];
+      maxChar = char;
+    }
+  }
+
+  return maxChar;
+}
+
+// oops did PYRAMID
+function pyramid(n) {
+  const midpoint = Math.floor((n * 2 - 1) / 2);
+
+  for(let row = 0; row < n; row++) {
+    let level = '';
+
+    for(let column = 0; column < n * 2 -1; column++) {
+      if(column >= midpoint - row && column <= midpoint + row) {
+        level += '#';
+      } else {
+        level += ' ';
+      }
+    }
+    console.log(level);
+  }
+}
+
+function pyramid(n, row = 0, level = '') {
+  if(row === n) {
+    return;
+  }
+
+  if(level.length === n * 2 - 1) {
+    console.log(level);
+    return pyramid(n, row + 1);
+  }
+
+  const midpoint = Math.floor((n * 2 - 1) / 2);
+  let add = '';
+  if(level.length >= midpoint - row && level.length <= midpoint + row) {
+    add = '#';
+  } else {
+    add = ' ';
+  }
+  pyramid(n, row, level + add);
+}
+
+// PRINT STEPS
+function steps(n) {
+  for(let row = 0; row < n; row++) {
+    let level = '';
+
+    for(let column = 0; column < n; column++) {
+      if(column <= row) {
+        level += '#';
+      } else {
+        level += ' ';
+      }
+    }
+    console.log(level);
+  }
+}
+
+function steps(n, row = 0, level = '') {
+  if(row === n) {
+    return;
+  }
+
+  if(level.length === n) {
+    console.log(level);
+    return steps(n, row + 1);
+  }
+
+  let add = '';
+  if(level.length <= row) {
+    add = '#';
+  } else {
+    add = ' ';
+  }
+  steps(n, row, level + add);
+}
+
+// THE QUEUE
+class Queue {
+  constructor() {
+    this.data = [];
+  }
+
+  add(record) {
+    this.data.unshift(record);
+  }
+
+  remove() {
+    return this.data.pop();
+  }
+}
+
