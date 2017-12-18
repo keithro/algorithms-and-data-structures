@@ -771,7 +771,7 @@ function matrix(n) {
     results.push([]);
   }
 
-  let counter = 1; // nneds to start at 1 not 0
+  let counter = 1; // needs to start at 1 not 0
   let startColumn = 0;
   let endColumn = n - 1;
   let startRow = 0;
@@ -956,4 +956,143 @@ class Queue {
     return this.data.pop();
   }
 }
+
+// FIZZBUZZ
+function fizzbuzz(n) {
+  for(let i = 1; i <= n; i++) { // LESS THAN OR FUCKING EQUAL TO!!!!
+    let str = '';
+    if(i % 3 === 0) str += 'fizz';
+    if(i % 5 === 0) str += 'buzz';
+    console.log(str || i); // STOP FUCKING LOGGING 'N'!!!!
+  }
+}
+
+function fizzbuzz(n) {
+  for(let i = 0; i <= n; i++) { // i EQUALS FUCKING 1 NOT 0!!!
+    let str = '';
+    if(i % 3 === 0) str += 'fizz';
+    if(i % 5 === 0) str += 'buzz';
+    console.log(str || i);
+  }
+}
+
+function fizzbuzz(n) {
+  for(let i = 1; i <= n; i++) {
+    if(i % 3 === 0 && i % 5 === 0) {
+      console.log('fizzbuzz');
+    } else if(i % 3 === 0) {
+      console.log('fizz');
+    } else if (i % 5 === 0) {
+      console.log('buzz');
+    } else {
+      console.log(i);
+    }
+  }
+}
+
+// PYRAMID
+function pyramid(n) {
+  const midpoint = Math.floor((n * 2 - 1) / 2);
+
+  for(let row = 0; row < n; row++) { // LESS THAN not less than or equal to
+    let level = '';
+
+    for(let col = 0; col < n * 2 - 1; col++) {
+      if(col >= midpoint - row && col <= midpoint + row) {
+        level += '#';
+      } else {
+        level += ' ';
+      }
+    }
+    console.log(level); // Didn't console.log, then logged variable name
+  }
+}
+
+function pyramid(n, row = 0, level = '') {
+  if(row === n) {
+    return;
+  }
+
+  if(level.length === n * 2 - 1) {
+    console.log(level);
+    return pyramid(n, row + 1);
+  }
+
+  const midpoint = Math.floor((n * 2 - 1) / 2);
+  let add;
+  if(level.length >= midpoint - row && level.length <= midpoint + row) {
+    add = '#';
+  } else {
+    add = ' ';
+  }
+  pyramid(n, row, level + add);
+}
+
+// FIBONACCI
+function fib(n) {
+  let results = [0, 1];
+
+  for(let i = 2; i <= n; i++) { // LESS THAN OR EQUAL TO not less than
+    results.push(results[i - 1] + results[i - 2]);
+  }
+  return results[n];
+}
+// recursive
+function fib(n) {
+  if(n < 2) return n;
+
+  return fib(n - 1) + fib(n - 2);
+}
+
+function memoize(fn) { // Still can't remember this function
+  let cache = {};
+  return function(...args) {
+    if(cache[args]) {
+      return cache[args];
+    }
+
+    const result = fn.apply(this, args);
+    cache[args] = result;
+
+    return result;
+  }
+}
+
+fib = memoize(fib);
+
+// QUEUE WEAVE
+class Queue {
+  constructor() {
+    this.data = [];
+  }
+
+  add(record) {
+    this.data.unshift(record);
+  }
+
+  remove() {
+    return this.data.pop();
+  }
+
+  peek() {
+    return this.data[this.data.length - 1];
+  }
+}
+
+function weave(sourceOne, sourceTwo) {
+  const q = new Queue(); // forgot 'const' and '()'
+
+  while(sourceOne.peek() || sourceTwo.peek()) {
+    if(sourceOne.peek()) { // forgot '()'
+      q.add(sourceOne.remove());
+    }
+
+    if(sourceTwo.peek()) {
+      q.add(sourceTwo.remove());
+    }
+  }
+
+  return q;
+}
+
 
