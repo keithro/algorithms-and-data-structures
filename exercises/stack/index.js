@@ -19,7 +19,7 @@ class Stack {
     this.data.push(record);
   }
 
-  pop(record) {
+  pop() {
     return this.data.pop();
   }
 

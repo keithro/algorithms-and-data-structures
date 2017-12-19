@@ -8,47 +8,47 @@
 // chunk([1, 2, 3, 4, 5], 4) --> [[ 1, 2, 3, 4], [5]]
 // chunk([1, 2, 3, 4, 5], 10) --> [[ 1, 2, 3, 4, 5]]
 
-// // ====== Solution 1 ======
-// function chunk(array, size) {
-//   let chunked = [];
+// ====== Solution 1 ======
+function chunk(array, size) {
+  let chunked = [];
 
-//   for(let element of array) {
-//     // last sub array
-//     const last = chunked[chunked.length -1];
+  for(let element of array) {
+    // last sub array
+    const last = chunked[chunked.length -1];
 
-//     if(!last || last.length === size) {
-//       // if no elements or inner array = size add new sub array
-//       chunked.push([element]);
-//     } else {
-//       // else add to last sub array
-//       last.push(element);
-//     }
-//   }
-//   return chunked
-// }
+    if(!last || last.length === size) {
+      // if no elements or inner array = size add new sub array
+      chunked.push([element]);
+    } else {
+      // else add to last sub array
+      last.push(element);
+    }
+  }
+  return chunked;
+}
 
-// ====== Solution 2 ======
+// // ====== Solution 2 ======
 // function chunk(array, size) {
 //   const chunked = [];
 
-//   for(let i = 0; i < array.length; i += size){
+//   for(let i = 0; i < array.length; i += size){ // holy shit forgot = sign in += so it craeted infinite loop
 //     chunked.push(array.slice(i, i + size));
 //   }
 
-//   return chunked
+//   return chunked;
 // }
 
-// ====== Solution 2.b: his implimentation of the slice method w/ while loop ======
-function chunk(array, size) {
-  const chunked = [];
-  let index = 0;
+// // ====== Solution 2.b: his implimentation of the slice method w/ while loop ======
+// function chunk(array, size) {
+//   const chunked = [];
+//   let index = 0;
 
-  while(index < array.length) {
-    chunked.push(array.slice(index, index + size));
-    index += size;
-  }
+//   while(index < array.length) {
+//     chunked.push(array.slice(index, index + size));
+//     index += size;
+//   }
 
-  return chunked;
-}
+//   return chunked;
+// }
 
 module.exports = chunk;

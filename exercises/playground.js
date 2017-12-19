@@ -968,7 +968,7 @@ function fizzbuzz(n) {
 }
 
 function fizzbuzz(n) {
-  for(let i = 0; i <= n; i++) { // i EQUALS FUCKING 1 NOT 0!!!
+  for (let i = 1; i <= n; i++) { // i EQUALS 1 NOT FUCKING 0!!!
     let str = '';
     if(i % 3 === 0) str += 'fizz';
     if(i % 5 === 0) str += 'buzz';
@@ -1095,4 +1095,111 @@ function weave(sourceOne, sourceTwo) {
   return q;
 }
 
+// ARRAY CHUNKING
+function chunk(array, size) {
+  let chunked = [];
+  
+  for(let item of array) {
+    let last = chunked[chunked.length - 1]; // Needs to be inside for loop
+    if(!last || last.length === size) { // need to account for no inner array and use || to check if already the length of the size parameter
+      chunked.push([item]);
+    } else {
+      last.push(item);
+    }
+  }
+  return chunked;
+}
+// 2
+function chunk(array, size) {
+  let chunked = [];
+  let index = 0;
+
+  while(index < array.length) {
+    chunked.push(array.slice(index, index + size));
+    index += size;
+  }
+  return chunked;
+}
+// 3
+function chunk(array, size) {
+  const chunked = [];
+
+  for (let i = 0; i < array.length; i += size) { // created infinite loop by not using the equal sign in +=
+    chunked.push(array.slice(i, i + size));
+  }
+  return chunked;
+}
+
+// FIND THE VOWEL
+function vowels(str) {
+  const array = ['a', 'e', 'i', 'o', 'u'];
+  let count = 0;
+
+  for(let char of str.toLowerCase()) { // Add .toLowerCase
+    if(array.includes(char)) count++;
+  }
+  return count; // forgot to fucking return count
+}
+// 2
+function vowels(str) {
+  let results = str.match(/[aeiou]/gi); // .match not .includes, didn't use the '/' or 'gi' in regex
+
+  return results ? results.length : 0; // can't use ||
+}
+
+// QUEUE
+class Queue {
+  constructor() {
+    this.data = [];
+  }
+
+  add(record) {
+    this.data.unshift(record);
+  }
+
+  remove() {
+    return this.data.pop();
+  }
+
+  /* Not time for peek yet, next exercise */
+  // peek() {
+  //   return this.data[this.data.length - 1];
+  // }
+}
+
+// STACK
+class Stack {
+  constructor() {
+    this.data = [];
+  }
+
+  push(record) {
+    this.data.push(record);
+  }
+
+  pop() {
+    return this.data.pop();
+  }
+
+  peek() {
+    return this.data[this.data.length - 1]
+  }
+}
+class Stack {
+  constructor() {
+    this.data = [];
+  }
+
+  push(record) {
+    this.data.push(record);
+  }
+
+  pop(record) {
+    return this.data.pop();
+  }
+
+  peek() {
+    return this.data[this.data.length - 1];
+  }
+}
 
