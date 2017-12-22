@@ -1185,6 +1185,132 @@ class Stack {
     return this.data[this.data.length - 1]
   }
 }
+
+// ANAGRAMS
+function anagrams(stringA, stringB) {
+  return cleanStr(stringA) === cleanStr(stringB);
+}
+
+function cleanStr(str) {
+  return str.replace(/[^\w]/g, '').toLowerCase().split('').sort().join(''); // RETURN!!! and join with a ''!
+}
+// 2
+function anagrams(stringA, stringB) {
+  const mapA = createMap(stringA);
+  const mapB = createMap(stringB);
+
+  if (Object.keys(mapA).length !== Object.keys(mapB).length) { // forgot .length() !
+    return false;
+  }
+
+  for(let item in mapA) {
+    if(mapA[item] !== mapB[item]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function createMap(str) {
+  let map = {};
+
+  for(let char of str.replace(/[^\w]/g, '').toLowerCase()) { // replace and lowerCase!
+    map[char] = map[char] + 1 || 1;
+  }
+  return map;
+}
+
+// MATRIX
+function matrix(n) {
+  const results = []; // Forgot to use const
+  for(let i = 0; i < n; i++) {
+    results.push([]);
+  }
+
+  let counter = 1; // Forgot to use let in all variables
+  let startColumn = 0;
+  let endColumn = n - 1;
+  let startRow = 0;
+  let endRow = n - 1;
+
+  while(startColumn <= endColumn && startRow <= endRow) {
+    for(let i = startColumn; i <= endColumn; i++){
+      results[startRow][i] = counter;
+      counter++;
+    }
+    startRow++;
+
+    for(let i = startRow; i <= endRow; i++) {
+      results[i][endColumn] = counter; // Forgot to set equal to count...
+      counter++;
+    }
+    endColumn--;
+
+    for(let i = endColumn; i >= startColumn; i--) {
+      results[endRow][i] = counter; // Forgot to set equal to count...
+      counter++;
+    }
+    endRow--;
+
+    for(let i = endRow; i >= startRow; i--) {
+      results[i][startColumn] = counter; // Forgot to set equal to count...
+      counter++;
+    }
+    startColumn++
+  }
+  return results; // RETURN RESULTS!!!
+}
+
+// QUEUE WEAVING
+class Queue {
+  constructor() {
+    this.data = [];
+  }
+
+  add(record) {
+    this.data.unshift(record);
+  }
+
+  remove() {
+    return this.data.pop(); // forgot 'data'
+  }
+
+  peek() {
+    return this.data[this.data.length - 1]; // forgot to return
+  }
+}
+
+function weave(sourceOne, sourceTwo) {
+  const q = new Queue; // forgot to create a queue
+
+  while(sourceOne.peek() || sourceTwo.peek()) {
+    if(sourceOne.peek()) {
+      q.add(sourceOne.remove());
+    }
+
+    if(sourceTwo.peek()) {
+      q.add(sourceTwo.remove());
+    }
+  }
+  return q;
+}
+function weave(sourceOne, sourceTwo) {
+  const q = new Queue();
+
+  // As long as one does not return null or undefined for the next index
+  while (sourceOne.peek() || sourceTwo.peek()) {
+    if (sourceOne.peek()) {
+      q.add(sourceOne.remove());
+    }
+
+    if (sourceTwo.peek()) {
+      q.add(sourceTwo.remove());
+    }
+  }
+  return q;
+}
+
+// QUEUE FROM STACK
 class Stack {
   constructor() {
     this.data = [];
@@ -1194,12 +1320,225 @@ class Stack {
     this.data.push(record);
   }
 
-  pop(record) {
+  pop() {
     return this.data.pop();
   }
 
   peek() {
     return this.data[this.data.length - 1];
+  }
+}
+
+class Queue {
+  constructor() {
+    this.first = new Stack();
+    this.second = new Stack();
+  }
+
+  add(record) {
+    this.first.push(record);
+  }
+
+  remove() {
+    while(this.first.peek()) {
+      this.second.push(this.first.pop());
+    }
+    const record = this.second.pop(); // can use 'const'; need to .pop() data off second stack (remember we are removing)
+
+    while(this.second.peek()) {
+      this.first.push(this.second.pop());
+    }
+    return record;
+  }
+
+  peek() {
+    while (this.first.peek()) {
+      this.second.push(this.first.pop());
+    }
+    const record = this.second.peek(); // Use peek. Remember the Stack already had a peek method
+
+    while (this.second.peek()) {
+      this.first.push(this.second.pop());
+    }
+    return record;
+  }
+}
+
+// SENTENCE CAPITALIZATION
+function capitalize(str) {
+  return str
+    .split(' ')
+    .map(word => word[0].toUpperCase() + word.slice(1)) // left out '.' before toUpperCase()
+    .join(' ');
+}
+
+function capitalize(str) {
+  let result = [];
+
+  for(let word of str.split(' ')) {
+    result.push(word[0].toUpperCase() + word.slice(1));
+  }
+  return result.join(' ');
+}
+
+// STACK
+class Stack {
+  constructor() {
+    this.data = [];
+  }
+
+  push(record) {
+    this.data.push(record);
+  }
+
+  pop() {
+    return this.data.pop();
+  }
+
+  peek() {
+    return this.data[this.data.length - 1];
+  }
+}
+
+// REVERSE A STRING
+function reverse(str) {
+  return str.split('').reverse().join(''); // RETURN YOU FOOL!
+}
+
+function reverse(str) {
+  let result = '';
+  for(let char of str) { // use OF not 'in' in loop
+    result = char + result;
+  }
+  return result;
+}
+
+function reverse(str) { // don't need "join()" since we are adding to a string
+  return str.split('') .reduce((result, char) => result = char + result, '') // We can also omit "result =" and just use "char + result".
+}
+
+// PRINTING STEPS
+function steps(n) {
+  for(let row = 0; row < n; row++) {
+    let level = '';
+
+    for(let col = 0; col < n; col++) {
+      if(col <= row) {
+        level += '#';
+      } else {
+        level += ' ';
+      }
+    }
+    console.log(level);
+  }
+}
+
+function steps(n, row = 0, level = '') {
+  if(row === n) {
+    return;
+  }
+
+  if(level.length === n) { // equal to n not row
+    console.log(level);
+    return steps(n, row + 1); // return function AND increment row (not just incrememnt row)
+  }
+
+  if(level.length <= row) {
+    level += '#';
+  } else {
+    level += ' ';
+  }
+  steps(n, row, level);
+}
+
+function fib(n) {
+  const arr = [0, 1];
+
+  for(let i = 2; i <=n; i++) {
+    arr.push(arr[i - 1] + arr[i - 2]);
+  }
+
+  return arr[n];
+}
+
+// recursive solution
+function fib(n) {
+  if(n < 2) {
+    return n;
+  }
+
+  return fib(n - 1) + fib(n - 2);
+}
+
+function memoize(fn) {
+  const cache = {};
+  return function(...args) {
+    if(cache[args]) {
+      return cache[args];
+    }
+
+    const result = fn.apply(this, args);
+    cache[args] = result;
+
+    return result;
+  }
+}
+
+fib = memoize(fib);
+
+// QUEUE FROM STATCK
+class Stack {
+  constructor() {
+    this.data = [];
+  }
+
+  push(record) {
+    this.data.push(record);
+  }
+
+  pop() {
+    return this.data.pop();
+  }
+
+  peek() {
+    return this.data[this.data.length - 1];
+  }
+}
+
+class Queue {
+  constructor() {
+    this.first = new Stack(); // use 'this.' rather than a variable assignment
+    this.second = new Stack();
+  }
+
+  add(record) {
+    this.first.push(record);
+  }
+
+  remove() {
+    while(this.first.peek()) {
+      this.second.push(this.first.pop());
+    }
+
+    const record = this.second.pop();
+
+    while(this.second.peek()) {
+      this.first.push(this.second.pop());
+    }
+
+    return record;
+  }
+
+  peek() {
+    while(this.first.peek()) {
+      this.second.push(this.first.pop());
+    }
+    const record = this.second.peek(); // remember the Stack already has its own peek method
+
+    while(this.second.peek()) {
+      this.first.push(this.second.pop());
+    }
+    return record;
   }
 }
 
