@@ -959,16 +959,16 @@ class Queue {
 
 // FIZZBUZZ
 function fizzbuzz(n) {
-  for(let i = 1; i <= n; i++) { // LESS THAN OR FUCKING EQUAL TO!!!!
+  for(let i = 1; i <= n; i++) { // LESS THAN OR EQUAL TO!!!!
     let str = '';
     if(i % 3 === 0) str += 'fizz';
     if(i % 5 === 0) str += 'buzz';
-    console.log(str || i); // STOP FUCKING LOGGING 'N'!!!!
+    console.log(str || i); // STOP LOGGING 'N'!!!!
   }
 }
 
 function fizzbuzz(n) {
-  for (let i = 1; i <= n; i++) { // i EQUALS 1 NOT FUCKING 0!!!
+  for (let i = 1; i <= n; i++) { // i EQUALS 1 NOT 0!!!
     let str = '';
     if(i % 3 === 0) str += 'fizz';
     if(i % 5 === 0) str += 'buzz';
@@ -1138,7 +1138,7 @@ function vowels(str) {
   for(let char of str.toLowerCase()) { // Add .toLowerCase
     if(array.includes(char)) count++;
   }
-  return count; // forgot to fucking return count
+  return count; // forgot to return count
 }
 // 2
 function vowels(str) {
