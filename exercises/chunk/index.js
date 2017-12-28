@@ -10,7 +10,7 @@
 
 // ====== Solution 1 ======
 function chunk(array, size) {
-  let chunked = [];
+  const chunked = [];
 
   for(let element of array) {
     // last sub array
@@ -27,28 +27,28 @@ function chunk(array, size) {
   return chunked;
 }
 
-// // ====== Solution 2 ======
-// function chunk(array, size) {
-//   const chunked = [];
+// ====== Solution 2 ======
+function chunk(array, size) {
+  const chunked = [];
 
-//   for(let i = 0; i < array.length; i += size){ // holy shit forgot = sign in += so it craeted infinite loop
-//     chunked.push(array.slice(i, i + size));
-//   }
+  for(let i = 0; i < array.length; i += size){ // holy shit forgot = sign in += so it craeted infinite loop
+    chunked.push(array.slice(i, i + size));
+  }
 
-//   return chunked;
-// }
+  return chunked;
+}
 
-// // ====== Solution 2.b: his implimentation of the slice method w/ while loop ======
-// function chunk(array, size) {
-//   const chunked = [];
-//   let index = 0;
+// ====== Solution 2.b: his implimentation of the slice method w/ while loop ======
+function chunk(array, size) {
+  const chunked = [];
+  let index = 0;
 
-//   while(index < array.length) {
-//     chunked.push(array.slice(index, index + size));
-//     index += size;
-//   }
+  while(index < array.length) {
+    chunked.push(array.slice(index, index + size));
+    index += size;
+  }
 
-//   return chunked;
-// }
+  return chunked;
+}
 
 module.exports = chunk;
