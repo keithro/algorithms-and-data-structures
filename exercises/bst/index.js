@@ -47,6 +47,7 @@ class Node {
       return this.left.contains(data);
     }
 
+    // if the tree does not contain the data
     return null;
   }
 }

@@ -6,6 +6,7 @@
 // the parent
 
 function validate(node, min = null, max = null) {
+  // Begin by comparing current node:
   // if there is a max value and the current node is larger than max return false
   if(max !== null && node.data > max) {
     return false;

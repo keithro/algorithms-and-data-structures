@@ -36,7 +36,7 @@
 
 // ====== Solution 3: with regex ======
 function vowels(str) {
-  const matches = str.match(/[aeiou]/gi);
+  const matches = str.match(/[aeiou]/gi); // match return an array
   return matches ? matches.length : 0;
 }
 

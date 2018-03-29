@@ -10,22 +10,27 @@ class Events {
 
   // Register an event handler
   on(eventName, callback) {
-    if(this.events[eventName]) {
+    const arr = this.events[eventName];
+    arr ? arr.push(callback) : this.events[eventName] = [callback];
+
+    /* if(this.events[eventName]) {
       // if there is this event, add the callback to the array
       this.events[eventName].push(callback);
     } else {
       // else add a new array with the callback in it
       this.events[eventName] = [callback];
-    }
+    } */
   }
 
   // Trigger all callbacks associated
   // with a given eventName
   trigger(eventName) {
-    if(this.events[eventName]) {
-      for(let cb of this.events[eventName]) {
+    if (this.events[eventName]) {
+      this.events[eventName].forEach(cb => cb());
+      
+      /* for(let cb of this.events[eventName]) {
         cb();
-      }
+      } */
     }
   }
 

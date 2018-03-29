@@ -7,12 +7,12 @@
 //   reverse('Greetings!') === '!sgniteerG'
 
 
-// ===== Solution 1 with .reverse() =====
+// // ===== Solution 1 with .reverse() =====
 // function reverse(str) {
 //   return str.split('').reverse().join('');
 // }
 
-// ===== Solution 2 without .reverse() =====
+// // ===== Solution 2 without .reverse() =====
 // function reverse(str) {
 //   let newStr = [];
 //   str.split('');
@@ -22,7 +22,7 @@
 //   return newStr.join('');
 // }
 
-// ===== Solution 2.b for loop with new syntax =====
+// // ===== Solution 2.b for loop with new syntax =====
 // function reverse(str) {
 //   let reversed = '';
 
@@ -34,9 +34,9 @@
 // }
 
 // ===== Solution 3 with .reduce() =====
-// function reverse(str) {
-//   return str.split('').reduce((revStr, char) => char + revStr, '');
-// }
+function reverse(str) {
+  return str.split('').reduce((revStr, char) => char + revStr, '');
+}
 
 /* 
 To use debugger:

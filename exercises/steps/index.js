@@ -37,12 +37,12 @@
 //     let step = '';
 
 //     for(let c = 0; c < n; c++) {
-//       if(c <= r) {
-//         step += '#';
-//       } else {
-//         step += ' ';
-//       }
-//       // c <= r ? step =+ '#' : step += ' ';
+//       // if(c <= r) {
+//       //   step += '#';
+//       // } else {
+//       //   step += ' ';
+//       // }
+//       step += c <= r ? '#' : ' ';
 //     }
 //     console.log(step);
 //   }
@@ -84,8 +84,11 @@ function steps(n, row = 0, stair = '') {
   }
 
   // build string
-  const add = stair.length <= row ? '#' : ' ';
-  steps(n, row, stair + add);
+  stair.length <= row ? stair += '#' : stair += ' ';
+  steps(n, row, stair);
+  
+  // const add = stair.length <= row ? '#' : ' ';
+  // steps(n, row, stair + add);
 }
 
 module.exports = steps;

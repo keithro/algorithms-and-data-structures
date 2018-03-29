@@ -48,6 +48,7 @@ class LinkedList {
     //   return null;
     // }
 
+    /* We need the if stmt above if we just add "return null" at the end */
     // let node = this.head;
     // while(node) {
     //   // if there is not a next node then return
@@ -80,6 +81,14 @@ class LinkedList {
       return;
     }
 
+    /* 
+    let node = this.head;
+    while (node.next && node.next.next) {
+      node = node.next;
+    }
+    node.next = null;
+     */
+
     let previous = this.head;
     let node = this.head.next;
 
@@ -91,7 +100,7 @@ class LinkedList {
   }
 
   insertLast(data) {
-    const last = this.getLast();
+    const last = this.getLast(); // not sure why but cannot use " || this.head" and then set it equal to the new Node
 
     if(last) {
       // There are existing nodes in our chain
@@ -153,7 +162,7 @@ class LinkedList {
 
     // get previous or last if it does not exist (the list is shorter than index)
     const previous = this.getAt(index - 1) || this.getLast();
-    const node = new Node(data, previous.next)
+    const node = new Node(data, previous.next) // can put on one line with below
     previous.next = node;
   }
 
